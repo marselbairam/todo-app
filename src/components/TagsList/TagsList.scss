@@ -1,0 +1,66 @@
+.tags-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  &__item {
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 18px 1fr;
+    grid-gap: 6px;
+    align-items: center;
+    padding: 10px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &_active {
+      box-shadow: 0 3px 10px rgba(0, 0, 0, .04);
+      background-color: #FFF;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 6px;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__icon {
+    fill: #7C7C7C;
+  }
+
+  &__tag {
+    width: 10px;
+    height: 10px;
+    margin: 0 auto;
+    border-radius: 50%;
+
+    &_mint {
+      background-color: #42B883;
+    }
+
+    &_blue {
+      background-color: #64C4ED;
+    }
+
+    &_pink {
+      background-color: #FFBBCC;
+    }
+
+    &_celadon {
+      background-color: #B6E6BD;
+    }
+
+    &_gray {
+      background-color: #C9D1D3;
+    }
+  }
+
+  &__label {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 24px;
+  }
+}
