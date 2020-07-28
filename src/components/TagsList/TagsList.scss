@@ -1,9 +1,9 @@
-.tags-list {
+.TagsList {
   margin: 0;
   padding: 0;
   list-style: none;
 
-  &__item {
+  &__Item {
     box-sizing: border-box;
     display: grid;
     grid-template-columns: 18px 1fr;
@@ -12,8 +12,9 @@
     padding: 10px 12px;
     border-radius: 4px;
     cursor: pointer;
+    transition: .25s ease-out;
 
-    &_active {
+    &_Active {
       box-shadow: 0 3px 10px rgba(0, 0, 0, .04);
       background-color: #FFF;
     }
@@ -27,38 +28,31 @@
     }
   }
 
-  &__icon {
-    fill: #7C7C7C;
+  &__AddButton {
+    color: #767676;
+
+    &:hover {
+      color: #000;
+
+      & svg {
+        fill: #000;
+      }
+    }
   }
 
-  &__tag {
-    width: 10px;
-    height: 10px;
+  &__Icon,
+  &__Tag {
     margin: 0 auto;
-    border-radius: 50%;
-
-    &_mint {
-      background-color: #42B883;
-    }
-
-    &_blue {
-      background-color: #64C4ED;
-    }
-
-    &_pink {
-      background-color: #FFBBCC;
-    }
-
-    &_celadon {
-      background-color: #B6E6BD;
-    }
-
-    &_gray {
-      background-color: #C9D1D3;
-    }
   }
 
-  &__label {
+  &__Icon {
+    fill: #7C7C7C;
+    transition: .25s ease-out;
+  }
+
+  &__Label {
+    position: relative;
+    top: 1px;
     font-size: 14px;
     font-weight: 500;
     line-height: 24px;

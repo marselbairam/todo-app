@@ -1,20 +1,30 @@
 import React from 'react';
+import classNames from 'classnames';
+import Tag from '../Tag/Tag';
+
 import './TagsList.scss';
 
-const TagsList = ({ items }) => {
+const TagsList = ({ items, onClick }) => {
   return (
-    <ul className="tags-list">
-      {items.map(item => (
+    <ul
+      className="TagsList"
+      onClick={onClick}
+    >
+      {items.map((item, index) => (
         <li
-          key={item.id}
-          className={`tags-list__item ${item.active ? 'tags-list__item_active': ''}`}
+          key={index}
+          className={classNames('TagsList__Item', item.className, { 'TagsList__Item_Active': item.active })}
         >
           {item.icon ? (
             item.icon
           ) : (
-            <span className={`tags-list__tag tags-list__tag_${item.color}`} />
+            <Tag
+              className="TagsList__Icon"
+              color={item.color}
+              size={item.size}
+            />
           )}
-          <span className="tags-list__label">{item.name}</span>
+          <span className="TagsList__Label">{item.name}</span>
         </li>
       ))}
     </ul>
