@@ -1,0 +1,41 @@
+.AddTagsButton {
+  & .TagsList {
+    margin-bottom: 0 !important;
+  }
+
+  &__Button {
+    color: #767676;
+  }
+
+  &__Popup {
+    box-sizing: border-box;
+    width: 240px;
+    min-height: 140px;
+    padding: 16px;
+    border-radius: 10px;
+    background-color: #FFF;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.05);
+
+    &Field,
+    &Button {
+      width: 100%;
+    }
+
+    &Field {
+      margin-bottom: 12px;
+    }
+
+    &Tags {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+
+      & .Tag {
+        &:not(:last-child) {
+          margin-right: 8px;
+        }
+      }
+    }
+  }
+}

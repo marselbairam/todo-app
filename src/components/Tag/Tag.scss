@@ -1,0 +1,50 @@
+.Tag {
+  box-sizing: border-box;
+  display: inline-flex;
+  width: 10px;
+  height: 10px;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  cursor: pointer;
+
+  &_Active {
+    border-color: #525252;
+  }
+
+  &_Md {
+    width: 16px;
+    height: 16px;
+  }
+
+  &_Grey {
+    background-color: #C9D1D3;
+  }
+
+  &_Mint {
+    background-color: #42B883;
+  }
+
+  &_Blue {
+    background-color: #64C4ED;
+  }
+
+  &_Pink {
+    background-color: #FFBBCC;
+  }
+
+  &_Celadon {
+    background-color: #B6E6BD;
+  }
+
+  &_Purple {
+    background-color: #C355F5;
+  }
+
+  &_DarkBlue {
+    background-color: #110133;
+  }
+
+  &_Orange {
+    background-color: #FF6464;
+  }
+}
