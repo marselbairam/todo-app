@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import TagsList from './components/TagsList/TagsList';
 import AddTagsButton from './components/AddTagsButton/AddTagsButton';
 
