@@ -6,6 +6,7 @@
   border: 2px solid transparent;
   border-radius: 50%;
   cursor: pointer;
+  transition: .25s ease-out;
 
   &_Active {
     border-color: #525252;

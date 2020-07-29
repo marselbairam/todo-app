@@ -8,13 +8,24 @@
   }
 
   &__Popup {
-    box-sizing: border-box;
+    position: relative;
     width: 240px;
     min-height: 140px;
-    padding: 16px;
     border-radius: 10px;
     background-color: #FFF;
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.05);
+
+    &CloseBtn {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      cursor: pointer;
+    }
+
+    &Inner {
+      box-sizing: border-box;
+      padding: 16px;
+    }
 
     &Field,
     &Button {
