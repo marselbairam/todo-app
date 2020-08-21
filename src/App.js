@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TagsList from './components/TagsList/TagsList';
 import AddTagsButton from './components/AddTagsButton/AddTagsButton';
 
@@ -7,6 +7,22 @@ import { ReactComponent as ListSvg } from './assets/img/list.svg';
 import DB from './assets/db.json';
 
 function App() {
+  const [lists, setLists] = useState(
+    DB.lists.map(item => {
+      item.color = DB.colors.find(({ id }) => id === item.colorId).name;
+      return item;
+    })
+  );
+
+  const onAddList = (obj) => {
+    console.log(obj);
+    const newLists = [
+      ...lists,
+      obj
+    ];
+    setLists(newLists);
+  };
+
   return (
     <div className="Todo">
       <div className="Todo__Sidebar">
@@ -20,31 +36,13 @@ function App() {
           ]}
         />
         <TagsList
-          items={[
-            {
-              color: 'Mint',
-              name: 'Purchases'
-            },
-            {
-              color: 'Blue',
-              name: 'Frontend'
-            },
-            {
-              color: 'Pink',
-              name: 'Movies and TV series'
-            },
-            {
-              color: 'Celadon',
-              name: 'Books'
-            },
-            {
-              color: 'Grey',
-              name: 'Personal'
-            }
-          ]}
+          items={lists}
           isRemovable
         />
-        <AddTagsButton colors={DB.colors} />
+        <AddTagsButton
+          onAdd={onAddList}
+          colors={DB.colors}
+        />
       </div>
       <div className="Todo__Tasks"></div>
     </div>

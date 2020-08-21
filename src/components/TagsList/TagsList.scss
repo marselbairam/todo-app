@@ -1,4 +1,5 @@
 .TagsList {
+  $self: &;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -6,7 +7,7 @@
   &__Item {
     box-sizing: border-box;
     display: grid;
-    grid-template-columns: 18px 1fr;
+    grid-template-columns: 18px 1fr 18px;
     grid-gap: 6px;
     align-items: center;
     padding: 10px 12px;
@@ -15,7 +16,7 @@
     transition: .25s ease-out;
 
     &_Active {
-      box-shadow: 0 3px 10px rgba(0, 0, 0, .04);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
       background-color: #FFF;
     }
 
@@ -25,6 +26,14 @@
 
     &:last-child {
       margin-bottom: 0;
+    }
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.5);
+
+      & #{$self}__Icon_Hidden {
+        opacity: 1;
+      }
     }
   }
 
@@ -46,8 +55,17 @@
   }
 
   &__Icon {
-    fill: #7C7C7C;
-    transition: .25s ease-out;
+    &_Gray {
+      fill: #7C7C7C;
+    }
+
+    &_Interactive {
+      transition: .25s ease-out;
+    }
+
+    &_Hidden {
+      opacity: 0;
+    }
   }
 
   &__Label {

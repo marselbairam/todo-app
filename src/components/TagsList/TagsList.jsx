@@ -1,10 +1,11 @@
 import React from 'react';
 import classNames from 'classnames';
 import Tag from '../Tag/Tag';
+import { ReactComponent as RemoveSvg } from '../../assets/img/remove.svg';
 
 import './TagsList.scss';
 
-const TagsList = ({ items, onClick }) => {
+const TagsList = ({ items, isRemovable, onClick }) => {
   return (
     <ul
       className="TagsList"
@@ -25,6 +26,7 @@ const TagsList = ({ items, onClick }) => {
             />
           )}
           <span className="TagsList__Label">{item.name}</span>
+          {isRemovable && <RemoveSvg className="TagsList__Icon TagsList__Icon_Gray TagsList__Icon_Interactive TagsList__Icon_Hidden" />}
         </li>
       ))}
     </ul>

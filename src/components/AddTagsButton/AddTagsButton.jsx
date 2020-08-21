@@ -9,9 +9,31 @@ import { ReactComponent as CloseSvg } from '../../assets/img/close.svg';
 
 import DB from '../../assets/db.json';
 
-const AddTagsButton = ({ colors }) => {
+const AddTagsButton = ({ onAdd, colors }) => {
   const [popupVisibility, setPopupVisibility] = useState(false);
   const [tagActiveState, setTagActiveState] = useState(DB.colors[0].id);
+  const [inputValue, setInputValue] = useState('');
+
+  const onClose = () => {
+    setInputValue('');
+    setPopupVisibility(false);
+    setTagActiveState(DB.colors[0].id);
+  };
+
+  const addList = () => {
+    if (!inputValue) {
+      alert('Введите название списка');
+      return;
+    }
+    const color = DB.colors.find(({ id }) => id === tagActiveState).name;
+    onAdd({
+      id: Math.random(),
+      name: inputValue,
+      colorId: tagActiveState,
+      color
+    });
+    onClose();
+  };
 
   return (
     <div className="AddTagsButton">
@@ -20,7 +42,7 @@ const AddTagsButton = ({ colors }) => {
         items={[
           {
             className: 'AddTagsButton__Button TagsList__AddButton',
-            icon: <PlusSvg className="TagsList__Icon" />,
+            icon: <PlusSvg className="TagsList__Icon TagsList__Icon_Gray TagsList__Icon_Interactive" />,
             name: 'Add folder'
           }
         ]}
@@ -29,13 +51,15 @@ const AddTagsButton = ({ colors }) => {
         <div className="AddTagsButton__Popup">
           <CloseSvg
             className="AddTagsButton__PopupCloseBtn"
-            onClick={() => setPopupVisibility(!popupVisibility)}
+            onClick={onClose}
           />
           <div className="AddTagsButton__PopupInner">
             <input
               className="AddTagsButton__PopupField Field"
               type="text"
               placeholder="Folder name"
+              value={inputValue}
+              onChange={e => setInputValue(e.target.value)}
             />
             <div className="AddTagsButton__PopupTags">
               {colors.map(tag => (
@@ -48,7 +72,12 @@ const AddTagsButton = ({ colors }) => {
                 />
               ))}
             </div>
-            <button className="AddTagsButton__PopupButton Button">Add</button>
+            <button
+              className="AddTagsButton__PopupButton Button"
+              onClick={addList}
+            >
+              Add
+            </button>
           </div>
         </div>
       )}
