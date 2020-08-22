@@ -41,8 +41,8 @@ const AddTagsButton = ({ onAdd, colors }) => {
         onClick={() => setPopupVisibility(!popupVisibility)}
         items={[
           {
-            className: 'AddTagsButton__Button TagsList__AddButton',
-            icon: <PlusSvg className="TagsList__Icon TagsList__Icon_Gray TagsList__Icon_Interactive" />,
+            className: 'TagsList__AddButton AddTagsButton__Button',
+            icon: <PlusSvg className="TagsList__Icon TagsList__Icon_Gray TagsList__Icon_Interactive TagsList__LeftIcon" />,
             name: 'Add folder'
           }
         ]}
