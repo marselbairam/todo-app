@@ -23,7 +23,7 @@ body {
 
   &__Sidebar {
     box-sizing: border-box;
-    width: 240px;
+    width: 280px;
     padding: 60px 20px;
     border-right: 1px solid #F1F1F1;
     background-color: #F4F6F8;
@@ -33,6 +33,24 @@ body {
         margin-bottom: 32px;
       }
     }
+  }
+
+  &__Tasks {
+    box-sizing: border-box;
+    flex-grow: 1;
+    padding: 60px;
+  }
+}
+
+.Tasks {
+  &__Title {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #F2F2F2;
+    font-family: 'Montserrat', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 42px;
+    color: #64C4ED;
   }
 }
 

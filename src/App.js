@@ -37,6 +37,7 @@ function App() {
         />
         <TagsList
           items={lists}
+          onRemove={(item) => console.log(item)}
           isRemovable
         />
         <AddTagsButton
@@ -44,7 +45,11 @@ function App() {
           colors={DB.colors}
         />
       </div>
-      <div className="Todo__Tasks"></div>
+      <div className="Todo__Tasks">
+        <div className="Tasks">
+          <h2 className="Tasks__Title">Фронтенд</h2>
+        </div>
+      </div>
     </div>
   );
 }
