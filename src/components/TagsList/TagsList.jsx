@@ -20,20 +20,20 @@ const TagsList = ({ items, isRemovable, onClick, onRemove }) => {
       {items.map((item, index) => (
         <li
           key={index}
-          className={classNames('TagsList__Item', item.className, { 'TagsList__Item_Active': item.active })}
+          className={classNames('TagsList__item', item.className, { 'TagsList__item_active': item.active })}
         >
           {item.icon ? (
             item.icon
           ) : (
             <Tag
-              className="TagsList__Icon TagsList__LeftIcon"
+              className="TagsList__icon TagsList__left-icon"
               color={item.color}
               size={item.size}
             />
           )}
-          <span className="TagsList__Label">{item.name}</span>
+          <span className="TagsList__label">{item.name}</span>
           {isRemovable && <RemoveSvg
-            className="TagsList__Icon TagsList__Icon_Gray TagsList__Icon_Interactive TagsList__Icon_Hidden TagsList__RemoveBtn"
+            className="TagsList__icon TagsList__icon_gray TagsList__icon_interactive TagsList__icon_hidden TagsList__remove-btn"
             onClick={() => removeList(item)}
           />}
         </li>

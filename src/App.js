@@ -25,12 +25,12 @@ function App() {
 
   return (
     <div className="Todo">
-      <div className="Todo__Sidebar">
+      <div className="Todo__sidebar">
         <TagsList
           items={[
             {
               active: true,
-              icon: <ListSvg className="TagsList__Icon" />,
+              icon: <ListSvg className="TagsList__icon" />,
               name: 'All tasks'
             }
           ]}
@@ -45,9 +45,9 @@ function App() {
           colors={DB.colors}
         />
       </div>
-      <div className="Todo__Tasks">
+      <div className="Todo__tasks">
         <div className="Tasks">
-          <h2 className="Tasks__Title">Фронтенд</h2>
+          <h2 className="Tasks__title">Фронтенд</h2>
         </div>
       </div>
     </div>

@@ -41,39 +41,39 @@ const AddTagsButton = ({ onAdd, colors }) => {
         onClick={() => setPopupVisibility(!popupVisibility)}
         items={[
           {
-            className: 'TagsList__AddButton AddTagsButton__Button',
-            icon: <PlusSvg className="TagsList__Icon TagsList__Icon_Gray TagsList__Icon_Interactive TagsList__LeftIcon" />,
+            className: 'TagsList__add-button AddTagsButton__button',
+            icon: <PlusSvg className="TagsList__icon TagsList__icon_gray TagsList__icon_interactive TagsList__left-icon" />,
             name: 'Add folder'
           }
         ]}
       />
       {popupVisibility && (
-        <div className="AddTagsButton__Popup">
+        <div className="AddTagsButton__popup">
           <CloseSvg
-            className="AddTagsButton__PopupCloseBtn"
+            className="AddTagsButton__popup-close-btn"
             onClick={onClose}
           />
-          <div className="AddTagsButton__PopupInner">
+          <div className="AddTagsButton__popup-inner">
             <input
-              className="AddTagsButton__PopupField Field"
+              className="AddTagsButton__popup-field Field"
               type="text"
               placeholder="Folder name"
               value={inputValue}
               onChange={e => setInputValue(e.target.value)}
             />
-            <div className="AddTagsButton__PopupTags">
+            <div className="AddTagsButton__popup-tags">
               {colors.map(tag => (
                 <Tag
                   key={tag.id}
                   color={tag.name}
-                  size="Md"
+                  size="md"
                   active={tag.id === tagActiveState}
                   handleClick={() => setTagActiveState(tag.id)}
                 />
               ))}
             </div>
             <button
-              className="AddTagsButton__PopupButton Button"
+              className="AddTagsButton__popup-button Button"
               onClick={addList}
             >
               Add

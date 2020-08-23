@@ -3,11 +3,11 @@
     margin-bottom: 0 !important;
   }
 
-  &__Button {
+  &__button {
     color: #767676;
   }
 
-  &__Popup {
+  &__popup {
     position: relative;
     width: 240px;
     min-height: 140px;
@@ -15,28 +15,28 @@
     background-color: #FFF;
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.05);
 
-    &CloseBtn {
+    &-close-btn {
       position: absolute;
       top: -10px;
       right: -10px;
       cursor: pointer;
     }
 
-    &Inner {
+    &-inner {
       box-sizing: border-box;
       padding: 16px;
     }
 
-    &Field,
-    &Button {
+    &-field,
+    &-button {
       width: 100%;
     }
 
-    &Field {
+    &-field {
       margin-bottom: 12px;
     }
 
-    &Tags {
+    &-tags {
       display: flex;
       justify-content: space-between;
       align-items: center;

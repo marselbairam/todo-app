@@ -8,44 +8,44 @@
   cursor: pointer;
   transition: .25s ease-out;
 
-  &_Active {
+  &_active {
     border-color: #525252;
   }
 
-  &_Md {
+  &_md {
     width: 16px;
     height: 16px;
   }
 
-  &_Grey {
+  &_grey {
     background-color: #C9D1D3;
   }
 
-  &_Mint {
+  &_mint {
     background-color: #42B883;
   }
 
-  &_Blue {
+  &_blue {
     background-color: #64C4ED;
   }
 
-  &_Pink {
+  &_pink {
     background-color: #FFBBCC;
   }
 
-  &_Celadon {
+  &_celadon {
     background-color: #B6E6BD;
   }
 
-  &_Purple {
+  &_purple {
     background-color: #C355F5;
   }
 
-  &_DarkBlue {
+  &_darkBlue {
     background-color: #110133;
   }
 
-  &_Orange {
+  &_orange {
     background-color: #FF6464;
   }
 }

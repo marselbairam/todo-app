@@ -21,7 +21,7 @@ body {
   height: 100%;
   margin: 0 auto;
 
-  &__Sidebar {
+  &__sidebar {
     box-sizing: border-box;
     width: 280px;
     padding: 60px 20px;
@@ -35,7 +35,7 @@ body {
     }
   }
 
-  &__Tasks {
+  &__tasks {
     box-sizing: border-box;
     flex-grow: 1;
     padding: 60px;
@@ -43,7 +43,7 @@ body {
 }
 
 .Tasks {
-  &__Title {
+  &__title {
     padding-bottom: 20px;
     border-bottom: 1px solid #F2F2F2;
     font-family: 'Montserrat', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;

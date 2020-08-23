@@ -4,7 +4,7 @@
   padding: 0;
   list-style: none;
 
-  &__Item {
+  &__item {
     box-sizing: border-box;
     display: flex;
     align-items: center;
@@ -13,7 +13,7 @@
     cursor: pointer;
     transition: .25s ease-out;
 
-    &_Active {
+    &_active {
       box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
       background-color: #FFF;
     }
@@ -29,13 +29,13 @@
     &:hover {
       background-color: rgba(255, 255, 255, 0.5);
 
-      & #{$self}__Icon_Hidden {
+      & #{$self}__icon_hidden {
         opacity: 0.4;
       }
     }
   }
 
-  &__AddButton {
+  &__add-button {
     color: #767676;
 
     &:hover {
@@ -47,16 +47,16 @@
     }
   }
 
-  &__LeftIcon {
+  &__left-icon {
     margin-right: 12px;
   }
 
-  &__Icon {
-    &_Gray {
+  &__icon {
+    &_gray {
       fill: #7C7C7C;
     }
 
-    &_Interactive {
+    &_interactive {
       transition: .25s ease-out;
 
       &:hover {
@@ -64,12 +64,12 @@
       }
     }
 
-    &_Hidden {
+    &_hidden {
       opacity: 0;
     }
   }
 
-  &__Label {
+  &__label {
     position: relative;
     top: 1px;
     margin-right: 12px;
@@ -78,7 +78,7 @@
     line-height: 24px;
   }
 
-  &__RemoveBtn {
+  &__remove-btn {
     flex-shrink: 0;
     margin-left: auto;
     padding: 8px;
