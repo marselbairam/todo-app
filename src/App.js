@@ -3,6 +3,7 @@ import TagsList from './components/TagsList/TagsList';
 import AddTagsButton from './components/AddTagsButton/AddTagsButton';
 
 import { ReactComponent as ListSvg } from './assets/img/list.svg';
+import { ReactComponent as CheckSvg } from './assets/img/check.svg';
 
 import DB from './assets/db.json';
 
@@ -48,6 +49,17 @@ function App() {
       <div className="Todo__tasks">
         <div className="Tasks">
           <h2 className="Tasks__title">Фронтенд</h2>
+          <div className="Tasks__items">
+            <div className="Tasks__item">
+              <label className="Control Control_checkbox">
+                <input className="Control__field" type="checkbox" />
+                <span className="Control__mark">
+                  <CheckSvg className="Control__mark-icon" />
+                </span>
+              </label>
+              <input className="Field Field_fullWidth" type="text" value="ReactJS Hooks (useState, useReducer, useEffect и т.д.)" />
+            </div>
+          </div>
         </div>
       </div>
     </div>

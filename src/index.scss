@@ -17,7 +17,7 @@ body {
 
 .Todo {
   display: flex;
-  max-width: 746px;
+  max-width: 992px;
   height: 100%;
   margin: 0 auto;
 
@@ -52,6 +52,15 @@ body {
     line-height: 42px;
     color: #64C4ED;
   }
+
+  &__item {
+    display: flex;
+    align-items: center;
+
+    & .Field {
+      margin-left: 16px;
+    }
+  }
 }
 
 .Field,
@@ -67,6 +76,11 @@ body {
   border-radius: 4px;
   background-color: #FFF;
   transition: .25s ease-out;
+
+  &_fullWidth {
+    max-width: 100%;
+    width: 100%;
+  }
 
   &:hover,
   &:focus {
@@ -87,6 +101,66 @@ body {
 
   &:-moz-placeholder {
     color: #C7C7C7;
+  }
+}
+
+.Control {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  &_checkbox {
+    &:hover {
+      & .Control__mark {
+        border-color: #F2F2F2;
+        background-color: #F2F2F2;
+      }
+
+      & .Control__mark-icon {
+        opacity: 1;
+      }
+    }
+
+    & .Control__mark {
+      border-radius: 50%;
+    }
+  }
+
+  &__field {
+    position: absolute;
+    width: 0;
+    height: 0;
+
+    &:checked + .Control__mark {
+      border-color: #4DD599;
+      background-color: #4DD599;
+
+      & .Control__mark-icon {
+        opacity: 1;
+        stroke: #FFF;
+      }
+    }
+  }
+
+  &__mark {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #E8E8E8;
+    transition: 0.25s ease;
+
+    &-icon {
+      margin: 0 auto;
+      opacity: 0;
+      stroke: #B2B2B2;
+      transition: 0.25s ease;
+    }
+  }
+
+  &__caption {
+    margin-left: 16px;
   }
 }
 
