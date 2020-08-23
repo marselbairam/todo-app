@@ -132,42 +132,42 @@
     {
       "id": 1,
       "hex": "#C9D1D3",
-      "name": "Grey"
+      "name": "grey"
     },
     {
       "id": 2,
       "hex": "#42B883",
-      "name": "Mint"
+      "name": "mint"
     },
     {
       "id": 3,
       "hex": "#64C4ED",
-      "name": "Blue"
+      "name": "blue"
     },
     {
       "id": 4,
       "hex": "#FFBBCC",
-      "name": "Pink"
+      "name": "pink"
     },
     {
       "id": 5,
       "hex": "#B6E6BD",
-      "name": "Celadon"
+      "name": "celadon"
     },
     {
       "id": 6,
       "hex": "#C355F5",
-      "name": "Purple"
+      "name": "purple"
     },
     {
       "id": 7,
       "hex": "#110133",
-      "name": "DarkBlue"
+      "name": "darkBlue"
     },
     {
       "id": 8,
       "hex": "#FF6464",
-      "name": "Orange"
+      "name": "orange"
     }
   ]
 }
