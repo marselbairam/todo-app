@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import TagsList from './components/TagsList/TagsList';
 import AddTagsButton from './components/AddTagsButton/AddTagsButton';
 
@@ -8,12 +9,17 @@ import { ReactComponent as CheckSvg } from './assets/img/check.svg';
 import DB from './assets/db.json';
 
 function App() {
-  const [lists, setLists] = useState(
-    DB.lists.map(item => {
-      item.color = DB.colors.find(({ id }) => id === item.colorId).name;
-      return item;
-    })
-  );
+  const [lists, setLists] = useState(null);
+  const [colors, setColors] = useState(null);
+
+  useEffect(() => {
+    axios('http://localhost:3001/lists?_expand=color').then(({ data }) => {
+      setLists(data);
+    });
+    axios('http://localhost:3001/colors').then(({ data }) => {
+      setColors(data);
+    });
+  }, []);
 
   const onAddList = (obj) => {
     console.log(obj);
