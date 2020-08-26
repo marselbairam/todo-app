@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
 import TagsList from '../TagsList/TagsList';
 import Tag from '../Tag/Tag';
 
@@ -7,17 +9,22 @@ import './AddTagsButton.scss';
 import { ReactComponent as PlusSvg } from '../../assets/img/plus.svg';
 import { ReactComponent as CloseSvg } from '../../assets/img/close.svg';
 
-import DB from '../../assets/db.json';
-
 const AddTagsButton = ({ onAdd, colors }) => {
   const [popupVisibility, setPopupVisibility] = useState(false);
-  const [tagActiveState, setTagActiveState] = useState(DB.colors[0].id);
+  const [tagActiveState, setTagActiveState] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
   const [inputValue, setInputValue] = useState('');
+
+  useEffect(() => {
+    if (Array.isArray(colors)) {
+      setTagActiveState(colors[0].id);
+    }
+  }, [colors]);
 
   const onClose = () => {
     setInputValue('');
     setPopupVisibility(false);
-    setTagActiveState(DB.colors[0].id);
+    setTagActiveState(colors[0].id);
   };
 
   const addList = () => {
@@ -25,14 +32,23 @@ const AddTagsButton = ({ onAdd, colors }) => {
       alert('Введите название списка');
       return;
     }
-    const color = DB.colors.find(({ id }) => id === tagActiveState).name;
-    onAdd({
-      id: Math.random(),
+    setIsLoading(true);
+    axios.post('http://localhost:3001/lists', {
       name: inputValue,
-      colorId: tagActiveState,
-      color
+      colorId: tagActiveState
+    }).then(({ data }) => {
+      const color = colors.find(({ id }) => id === tagActiveState).name;
+      const listObj = {
+        ...data,
+        color: {
+          name: color
+        }
+      };
+      onAdd(listObj);
+      onClose();
+    }).finally(() => {
+      setIsLoading(false);
     });
-    onClose();
   };
 
   return (
@@ -76,7 +92,7 @@ const AddTagsButton = ({ onAdd, colors }) => {
               className="AddTagsButton__popup-button Button"
               onClick={addList}
             >
-              Add
+              {isLoading ? 'Adding...' : 'Add'}
             </button>
           </div>
         </div>

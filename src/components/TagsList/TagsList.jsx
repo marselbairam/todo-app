@@ -27,7 +27,7 @@ const TagsList = ({ items, isRemovable, onClick, onRemove }) => {
           ) : (
             <Tag
               className="TagsList__icon TagsList__left-icon"
-              color={item.color}
+              color={item.color.name}
               size={item.size}
             />
           )}
