@@ -42,27 +42,6 @@ body {
   }
 }
 
-.Tasks {
-  &__title {
-    padding-bottom: 20px;
-    border-bottom: 1px solid #F2F2F2;
-    font-family: 'Montserrat', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-    font-size: 32px;
-    font-weight: 700;
-    line-height: 42px;
-    color: #64C4ED;
-  }
-
-  &__item {
-    display: flex;
-    align-items: center;
-
-    & .Field {
-      margin-left: 16px;
-    }
-  }
-}
-
 .Field,
 .Button {
   outline: none;
