@@ -1,5 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
+import axios from 'axios';
+
 import Tag from '../Tag/Tag';
 import { ReactComponent as RemoveSvg } from '../../assets/img/remove.svg';
 
@@ -8,7 +10,9 @@ import './TagsList.scss';
 const TagsList = ({ items, isRemovable, onClick, onRemove }) => {
   const removeList = item => {
     if (window.confirm('Вы действительно хотите удалить список?')) {
-      onRemove(item);
+      axios.delete('http://localhost:3001/lists/' + item.id).then(() => {
+        onRemove(item.id);
+      });
     }
   };
 
