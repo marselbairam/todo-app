@@ -23,7 +23,7 @@ const Tasks = ({ list }) => {
             </span>
             </label>
             <input
-              className="Field Field_fullWidth"
+              className="Field Field_fullWidth Field_borderTransparent"
               type="text"
               readOnly
               value={task.text}

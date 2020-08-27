@@ -55,10 +55,15 @@ body {
   border-radius: 4px;
   background-color: #FFF;
   transition: .25s ease-out;
+  font-size: 16px;
 
   &_fullWidth {
     max-width: 100%;
     width: 100%;
+  }
+
+  &_borderTransparent {
+    border-color: transparent;
   }
 
   &:hover,
