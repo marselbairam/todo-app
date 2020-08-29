@@ -7,7 +7,7 @@ import { ReactComponent as RemoveSvg } from '../../assets/img/remove.svg';
 
 import './TagsList.scss';
 
-const TagsList = ({ items, isRemovable, onClick, onRemove }) => {
+const TagsList = ({ items, isRemovable, onClick, onClickItem, activeItem, onRemove }) => {
   const removeList = item => {
     if (window.confirm('Вы действительно хотите удалить список?')) {
       axios.delete('http://localhost:3001/lists/' + item.id).then(() => {
@@ -24,7 +24,8 @@ const TagsList = ({ items, isRemovable, onClick, onRemove }) => {
       {items.map((item, index) => (
         <li
           key={index}
-          className={classNames('TagsList__item', item.className, { 'TagsList__item_active': item.active })}
+          className={classNames('TagsList__item', item.className, { 'TagsList__item_active': activeItem && activeItem.id === item.id })}
+          onClick={onClickItem ? () => onClickItem(item) : null}
         >
           {item.icon ? (
             item.icon
