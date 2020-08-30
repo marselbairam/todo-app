@@ -36,7 +36,8 @@ const AddTagsButton = ({ onAdd, colors }) => {
     axios.post('http://localhost:3001/lists', {
       name: inputValue,
       colorId: tagActiveState
-    }).then(({ data }) => {
+    })
+    .then(({ data }) => {
       const color = colors.find(({ id }) => id === tagActiveState).name;
       const listObj = {
         ...data,
@@ -46,7 +47,11 @@ const AddTagsButton = ({ onAdd, colors }) => {
       };
       onAdd(listObj);
       onClose();
-    }).finally(() => {
+    })
+    .catch(() => {
+      alert('Ошибка при добавлении списка!');
+    })
+    .finally(() => {
       setIsLoading(false);
     });
   };
