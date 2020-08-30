@@ -174,4 +174,8 @@ body {
       background-color: darken(#C9D1D3, 8%);
     }
   }
+
+  &:disabled {
+    background-color: #D8D8D8;
+  }
 }

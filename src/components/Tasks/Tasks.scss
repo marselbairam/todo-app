@@ -1,12 +1,43 @@
 .Tasks {
-  &__title {
+  &__header {
+    display: flex;
+    margin-bottom: 32px;
     padding-bottom: 20px;
     border-bottom: 1px solid #F2F2F2;
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+    margin: 0;
     font-family: 'Montserrat', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 32px;
     font-weight: 700;
     line-height: 42px;
     color: #64C4ED;
+
+    &:hover {
+      & .Tasks__edit-btn {
+        opacity: 1;
+      }
+    }
+
+    &-text {
+      margin-right: 8px;
+    }
+  }
+
+  &__edit-btn {
+    padding: 8px;
+    border: 0;
+    opacity: 0;
+    background-color: transparent;
+    cursor: pointer;
+    transition: 0.25s ease;
+
+    &-icon {
+      fill: #C9D1D3;
+    }
   }
 
   &__item {
@@ -19,6 +50,71 @@
 
     & .Field {
       margin-left: 16px;
+    }
+  }
+
+  &__info-label {
+    margin-bottom: 24px;
+    font-size: 24px;
+    font-weight: 700;
+    color: #C9D1D3;
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 10px;
+  }
+
+  &__action-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    &:hover {
+      & .Tasks__action-item-icon {
+        fill: #000;
+      }
+
+      & .Tasks__action-item-label {
+        color: #000;
+      }
+    }
+
+    &-icon-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 24px;
+      height: 24px;
+    }
+
+    &-icon {
+      margin: auto;
+      fill: #ADADAD;
+    }
+
+    &-label {
+      display: inline-block;
+      margin-left: 29px;
+      font-size: 16px;
+      color: #ADADAD;
+    }
+  }
+
+  &__action-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 16px 0;
+    width: 100%;
+
+    &-row {
+      & .Button {
+        &:first-child {
+          margin-right: 16px;
+        }
+      }
     }
   }
 }
