@@ -7,7 +7,7 @@ import {ReactComponent as EditSvg} from '../../assets/img/edit.svg';
 import {ReactComponent as CheckSvg} from '../../assets/img/check.svg';
 import {ReactComponent as PlusSvg} from '../../assets/img/plus.svg';
 
-const Tasks = ({ list, onAddTask, onEditTitle }) => {
+const Tasks = ({ list, onAddTask, onEditTitle, withoutEmpty }) => {
   const [actionVisibility, setActionVisibility] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -56,7 +56,10 @@ const Tasks = ({ list, onAddTask, onEditTitle }) => {
     <div className="Tasks">
       <div className="Tasks__header">
         <h2 className="Tasks__title">
-          <span className="Tasks__title-text">
+          <span
+            className="Tasks__title-text"
+            style={{ color: list.color.hex }}
+          >
             {list.name}
           </span>
           <button
@@ -68,7 +71,7 @@ const Tasks = ({ list, onAddTask, onEditTitle }) => {
         </h2>
       </div>
       <div className="Tasks__items">
-        {!list.tasks.length && <div className="Tasks__info-label">Задачи отсутствуют</div>}
+        {!withoutEmpty && !list.tasks.length && <div className="Tasks__info-label">Задачи отсутствуют</div>}
         {list.tasks.map(task => (
           <div
             key={task.id}
