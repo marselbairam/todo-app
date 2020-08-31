@@ -36,9 +36,16 @@ body {
   }
 
   &__tasks {
+    overflow-y: auto;
     box-sizing: border-box;
     flex-grow: 1;
     padding: 60px;
+
+    & .Tasks {
+      &:not(:last-child) {
+        margin-bottom: 48px;
+      }
+    }
   }
 }
 
