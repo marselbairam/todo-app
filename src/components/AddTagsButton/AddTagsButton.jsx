@@ -38,12 +38,11 @@ const AddTagsButton = ({ onAdd, colors }) => {
       colorId: tagActiveState
     })
     .then(({ data }) => {
-      const color = colors.find(({ id }) => id === tagActiveState).name;
+      const color = colors.find(({ id }) => id === tagActiveState);
       const listObj = {
         ...data,
-        color: {
-          name: color
-        }
+        color,
+        tasks: []
       };
       onAdd(listObj);
       onClose();
@@ -94,7 +93,7 @@ const AddTagsButton = ({ onAdd, colors }) => {
               ))}
             </div>
             <button
-              className="AddTagsButton__popup-button Button"
+              className="AddTagsButton__popup-button Button Button_emerald"
               onClick={addList}
             >
               {isLoading ? 'Adding...' : 'Add'}
