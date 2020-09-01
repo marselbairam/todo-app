@@ -6,8 +6,9 @@ import './Tasks.scss';
 import {ReactComponent as EditSvg} from '../../assets/img/edit.svg';
 import {ReactComponent as CheckSvg} from '../../assets/img/check.svg';
 import {ReactComponent as PlusSvg} from '../../assets/img/plus.svg';
+import {ReactComponent as RemoveSvg} from '../../assets/img/remove.svg';
 
-const Tasks = ({ list, onAddTask, onEditTitle, withoutEmpty }) => {
+const Tasks = ({ list, onAddTask, onEditTitle, withoutEmpty, onRemoveTask, onEditTask, onCompleteTask }) => {
   const [actionVisibility, setActionVisibility] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -23,6 +24,10 @@ const Tasks = ({ list, onAddTask, onEditTitle, withoutEmpty }) => {
         alert('Не удалось обновить название списка');
       });
     }
+  };
+
+  const onChangeCheckbox = e => {
+    console.log(e.target.checked);
   };
 
   const toggleAction = () => {
@@ -71,8 +76,8 @@ const Tasks = ({ list, onAddTask, onEditTitle, withoutEmpty }) => {
         </h2>
       </div>
       <div className="Tasks__items">
-        {!withoutEmpty && !list.tasks.length && <div className="Tasks__info-label">Задачи отсутствуют</div>}
-        {list.tasks.map(task => (
+        {!withoutEmpty && list.tasks && !list.tasks.length && <div className="Tasks__info-label">Задачи отсутствуют</div>}
+        {list.tasks && list.tasks.map(task => (
           <div
             key={task.id}
             className="Tasks__item"
@@ -83,12 +88,21 @@ const Tasks = ({ list, onAddTask, onEditTitle, withoutEmpty }) => {
               <CheckSvg className="Control__mark-icon" />
             </span>
             </label>
-            <input
-              className="Field Field_fullWidth Field_borderTransparent"
-              type="text"
-              readOnly
-              value={task.text}
-            />
+            <p className="Tasks__item-text">{task.text}</p>
+            <div className="Tasks__item-actions">
+              <div
+                className="Tasks__item-action"
+                onClick={() => onEditTask(list.id, { id: task.id, text: task.text })}
+              >
+                <EditSvg className="Tasks__item-action-icon" />
+              </div>
+              <div
+                className="Tasks__item-action"
+                onClick={() => onRemoveTask(list.id, task.id)}
+              >
+                <RemoveSvg className="Tasks__item-action-icon" />
+              </div>
+            </div>
           </div>
         ))}
         <div className="Tasks__actions">
@@ -113,7 +127,9 @@ const Tasks = ({ list, onAddTask, onEditTitle, withoutEmpty }) => {
                   setInputValue(e.target.value);
                 }}
               />
-              <div className="Tasks__action-content-row">
+              <div
+                className="Tasks__action-content-row"
+              >
                 <button
                   className="Button Button_emerald"
                   disabled={isLoading}
