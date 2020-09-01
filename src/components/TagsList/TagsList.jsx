@@ -24,9 +24,12 @@ const TagsList = ({ items, isRemovable, onClick, onClickItem, activeItem, onRemo
       {items.map((item, index) => (
         <li
           key={index}
-          className={classNames('TagsList__item', item.className, {
-            'TagsList__item_active': item.active ? item.active : activeItem && activeItem.id === item.id
-          })}
+          className={classNames(
+            'TagsList__item',
+            item.className, {
+              'TagsList__item_active': item.active ? item.active : activeItem && activeItem.id === item.id
+            }
+          )}
           onClick={onClickItem ? () => onClickItem(item) : null}
         >
           {item.icon ? (

@@ -15,19 +15,20 @@ function App() {
   let history = useHistory();
 
   useEffect(() => {
-    axios.get('http://localhost:3001/lists?_expand=color&_embed=tasks').then(({ data }) => {
-      setLists(data);
-    });
-    axios.get('http://localhost:3001/colors').then(({ data }) => {
-      setColors(data);
-    });
+    axios
+      .get('http://localhost:3001/lists?_expand=color&_embed=tasks')
+      .then(({ data }) => {
+        setLists(data);
+      });
+    axios
+      .get('http://localhost:3001/colors')
+      .then(({ data }) => {
+        setColors(data);
+      });
   }, []);
 
   const onAddList = (obj) => {
-    const newList = [
-      ...lists,
-      obj
-    ];
+    const newList = [...lists, obj];
     setLists(newList);
   };
 
@@ -39,22 +40,6 @@ function App() {
       return item;
     });
     setLists(newList);
-  };
-
-  const onRemoveTask = (listId, taskId) => {
-    if (window.confirm('Вы действительно хотите удалить задачу?')) {
-      const newList = lists.map(item => {
-        if (item.id === listId) {
-          item.tasks = item.tasks.filter(task => task.id !== taskId);
-        }
-        return item;
-      });
-      setLists(newList);
-      axios.delete('http://localhost:3001/tasks/' + taskId)
-        .catch(() => {
-          alert('Не удалось удалить задачу');
-        });
-    }
   };
 
   const onEditTask = (listId, taskObj) => {
@@ -76,10 +61,30 @@ function App() {
       return list;
     });
     setLists(newList);
-    axios.patch('http://localhost:3001/tasks/' + taskObj.id, { text: newTaskText })
+    axios
+      .patch('http://localhost:3001/tasks/' + taskObj.id, {
+        text: newTaskText
+      })
       .catch(() => {
         alert('Не удалось обновить задачу');
       });
+  };
+
+  const onRemoveTask = (listId, taskId) => {
+    if (window.confirm('Вы действительно хотите удалить задачу?')) {
+      const newList = lists.map(item => {
+        if (item.id === listId) {
+          item.tasks = item.tasks.filter(task => task.id !== taskId);
+        }
+        return item;
+      });
+      setLists(newList);
+      axios
+        .delete('http://localhost:3001/tasks/' + taskId)
+        .catch(() => {
+          alert('Не удалось удалить задачу');
+        });
+    }
   };
 
   const onCompleteTask = (listId, taskId, completed) => {
@@ -100,7 +105,7 @@ function App() {
         completed
       })
       .catch(() => {
-        alert('Не удалось изменить статус задачи');
+        alert('Не удалось обновить задачу');
       });
   };
 
@@ -114,19 +119,12 @@ function App() {
     setLists(newList);
   };
 
-  const toggleLists = () => {
+  useEffect(() => {
     const listId = history.location.pathname.split('lists/')[1];
     if (lists) {
       const list = lists.find(list => list.id === Number(listId));
       setActiveItem(list);
     }
-  };
-
-  useEffect(() => {
-    toggleLists();
-    history.listen(() => {
-      toggleLists();
-    });
   }, [lists, history.location.pathname]);
 
   return (
@@ -140,7 +138,7 @@ function App() {
               name: 'All tasks'
             }
           ]}
-          onClickItem={list => {
+          onClickItem={() => {
             history.push(`/`);
           }}
         />
@@ -157,7 +155,7 @@ function App() {
             activeItem={activeItem}
             isRemovable
           />
-          : <div>Загрузка списка...</div>
+          : <div>Загрузка...</div>
         }
         <AddTagsButton
           onAdd={onAddList}
@@ -180,8 +178,7 @@ function App() {
           ))}
         </Route>
         <Route path="/lists/:id">
-          {
-            lists && activeItem &&
+          {lists && activeItem && (
             <Tasks
               list={activeItem}
               onAddTask={onAddTask}
@@ -190,7 +187,7 @@ function App() {
               onRemoveTask={onRemoveTask}
               onCompleteTask={onCompleteTask}
             />
-          }
+          )}
         </Route>
       </div>
     </div>
