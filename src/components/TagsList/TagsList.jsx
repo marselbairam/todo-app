@@ -41,11 +41,15 @@ const TagsList = ({ items, isRemovable, onClick, onClickItem, activeItem, onRemo
               size={item.size}
             />
           )}
-          <span className="TagsList__label">{item.name}</span>
-          {isRemovable && <RemoveSvg
-            className="TagsList__icon TagsList__icon_gray TagsList__icon_interactive TagsList__icon_hidden TagsList__remove-btn"
-            onClick={() => removeList(item)}
-          />}
+          <span className="TagsList__label">
+            {item.name}
+          </span>
+          {isRemovable && (
+            <RemoveSvg
+              className="TagsList__icon TagsList__icon_gray TagsList__icon_interactive TagsList__icon_hidden TagsList__remove-btn"
+              onClick={() => removeList(item)}
+            />
+          )}
         </li>
       ))}
     </ul>

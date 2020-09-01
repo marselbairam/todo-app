@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, useHistory } from 'react-router-dom';
+import { Route, useHistory, useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 import TagsList from './components/TagsList/TagsList';
@@ -12,7 +12,8 @@ function App() {
   const [lists, setLists] = useState(null);
   const [colors, setColors] = useState(null);
   const [activeItem, setActiveItem] = useState(null);
-  let history = useHistory();
+  const history = useHistory();
+  const location = useLocation();
 
   useEffect(() => {
     axios
@@ -120,12 +121,12 @@ function App() {
   };
 
   useEffect(() => {
-    const listId = history.location.pathname.split('lists/')[1];
+    const listId = location.pathname.split('lists/')[1];
     if (lists) {
       const list = lists.find(list => list.id === Number(listId));
       setActiveItem(list);
     }
-  }, [lists, history.location.pathname]);
+  }, [lists, location]);
 
   return (
     <div className="Todo">
@@ -135,7 +136,7 @@ function App() {
             {
               active: history.location.pathname === '/',
               icon: <ListSvg className="TagsList__icon" />,
-              name: 'All tasks'
+              name: 'Все задачи'
             }
           ]}
           onClickItem={() => {
@@ -155,7 +156,9 @@ function App() {
             activeItem={activeItem}
             isRemovable
           />
-          : <div>Загрузка...</div>
+          : (
+            <div>Загрузка...</div>
+          )
         }
         <AddTagsButton
           onAdd={onAddList}

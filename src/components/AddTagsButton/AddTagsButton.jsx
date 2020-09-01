@@ -33,26 +33,23 @@ const AddTagsButton = ({ onAdd, colors }) => {
       return;
     }
     setIsLoading(true);
-    axios.post('http://localhost:3001/lists', {
-      name: inputValue,
-      colorId: tagActiveState
-    })
-    .then(({ data }) => {
-      const color = colors.find(({ id }) => id === tagActiveState);
-      const listObj = {
-        ...data,
-        color,
-        tasks: []
-      };
-      onAdd(listObj);
-      onClose();
-    })
-    .catch(() => {
-      alert('Ошибка при добавлении списка!');
-    })
-    .finally(() => {
-      setIsLoading(false);
-    });
+    axios
+      .post('http://localhost:3001/lists', {
+        name: inputValue,
+        colorId: tagActiveState
+      })
+      .then(({ data }) => {
+        const color = colors.find(({ id }) => id === tagActiveState);
+        const listObj = {...data, color, tasks: []};
+        onAdd(listObj);
+        onClose();
+      })
+      .catch(() => {
+        alert('Ошибка при добавлении списка!');
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   return (
