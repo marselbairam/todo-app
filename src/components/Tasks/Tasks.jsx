@@ -8,7 +8,7 @@ import {ReactComponent as CheckSvg} from '../../assets/img/check.svg';
 import {ReactComponent as PlusSvg} from '../../assets/img/plus.svg';
 import {ReactComponent as RemoveSvg} from '../../assets/img/remove.svg';
 
-const Tasks = ({ list, onAddTask, onEditTitle, withoutEmpty, onRemoveTask, onEditTask, onCompleteTask }) => {
+const Tasks = ({ id, text, completed, list, onAddTask, onEditTitle, withoutEmpty, onRemoveTask, onEditTask, onCompleteTask }) => {
   const [actionVisibility, setActionVisibility] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -17,17 +17,18 @@ const Tasks = ({ list, onAddTask, onEditTitle, withoutEmpty, onRemoveTask, onEdi
     const newTitle = window.prompt('Название списка', list.name);
     if (newTitle) {
       onEditTitle(list.id, newTitle);
-      axios.patch('http://localhost:3001/lists/' + list.id, {
-        name: newTitle
-      })
-      .catch(() => {
-        alert('Не удалось обновить название списка');
-      });
+      axios
+        .patch('http://localhost:3001/lists/' + list.id, {
+          name: newTitle
+        })
+        .catch(() => {
+          alert('Не удалось обновить название списка');
+        });
     }
   };
 
   const onChangeCheckbox = e => {
-    console.log(e.target.checked);
+    onCompleteTask(list.id, id, e.target.checked);
   };
 
   const toggleAction = () => {
@@ -43,18 +44,18 @@ const Tasks = ({ list, onAddTask, onEditTitle, withoutEmpty, onRemoveTask, onEdi
     };
 
     setIsLoading(true);
-    axios.post('http://localhost:3001/tasks', obj)
-    .then(({ data }) => {
-      onAddTask(list.id, data);
-      toggleAction();
-    })
-    .catch(() => {
-      alert('Ошибка при добавлении задачи!');
-    })
-    .finally(() => {
-      setIsLoading(false);
-    });
-
+    axios
+      .post('http://localhost:3001/tasks', obj)
+      .then(({ data }) => {
+        onAddTask(list.id, data);
+        toggleAction();
+      })
+      .catch(() => {
+        alert('Ошибка при добавлении задачи!');
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   return (
@@ -76,34 +77,42 @@ const Tasks = ({ list, onAddTask, onEditTitle, withoutEmpty, onRemoveTask, onEdi
         </h2>
       </div>
       <div className="Tasks__items">
-        {!withoutEmpty && list.tasks && !list.tasks.length && <div className="Tasks__info-label">Задачи отсутствуют</div>}
-        {list.tasks && list.tasks.map(task => (
-          <div
-            key={task.id}
-            className="Tasks__item"
-          >
-            <label className="Control Control_checkbox">
-              <input className="Control__field" type="checkbox" />
-              <span className="Control__mark">
-              <CheckSvg className="Control__mark-icon" />
-            </span>
-            </label>
-            <p className="Tasks__item-text">{task.text}</p>
-            <div className="Tasks__item-actions">
-              <div
-                className="Tasks__item-action"
-                onClick={() => onEditTask(list.id, { id: task.id, text: task.text })}
-              >
-                <EditSvg className="Tasks__item-action-icon" />
-              </div>
-              <div
-                className="Tasks__item-action"
-                onClick={() => onRemoveTask(list.id, task.id)}
-              >
-                <RemoveSvg className="Tasks__item-action-icon" />
+        {!withoutEmpty && list.tasks && !list.tasks.length && (
+          <div className="Tasks__info-label">Задачи отсутствуют</div>
+        )}
+        {list.tasks &&
+          list.tasks.map(task => (
+            <div
+              key={task.id}
+              className="Tasks__item"
+            >
+              <label className="Control Control_checkbox">
+                <input
+                  className="Control__field"
+                  type="checkbox"
+                  onChange={onChangeCheckbox}
+                  checked={completed}
+                />
+                <span className="Control__mark">
+                <CheckSvg className="Control__mark-icon" />
+              </span>
+              </label>
+              <p className="Tasks__item-text">{task.text}</p>
+              <div className="Tasks__item-actions">
+                <div
+                  className="Tasks__item-action"
+                  onClick={() => onEditTask(list.id, { id: task.id, text: task.text })}
+                >
+                  <EditSvg className="Tasks__item-action-icon" />
+                </div>
+                <div
+                  className="Tasks__item-action"
+                  onClick={() => onRemoveTask(list.id, task.id)}
+                >
+                  <RemoveSvg className="Tasks__item-action-icon" />
+                </div>
               </div>
             </div>
-          </div>
         ))}
         <div className="Tasks__actions">
           {!actionVisibility ? (
